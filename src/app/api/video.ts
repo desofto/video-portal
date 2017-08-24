@@ -14,7 +14,7 @@ export class VideoApi {
   list(skip?: Number, limit?: Number) {
     return new Promise((resolve, reject) => {
       let sessionId = this.currentUser.active.sessionId;
-      this.http.get(`http://localhost:3000/videos?sessionId=${sessionId}&skip=${skip || ''}&limit=${limit || ''}`)
+      this.http.get(`http://localhost:3000/videos?sessionId=${sessionId}&skip=${skip || ''}&limit=${limit || 8}`)
         .map(res => res.json())
         .subscribe(res => {
           if(res.status == 'success') {

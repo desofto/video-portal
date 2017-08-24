@@ -1,3 +1,7 @@
-<div *ngFor="let video of list">
-  <video-item item="video.name"></video-item>
+<div style="margin-left: 3rem; margin-right: 3rem;">
+  <div *ngFor="let video of list">
+    <video-item [video]="video" class="pull-left"></video-item>
+  </div>
+  <div class="clearfix"></div>
 </div>
+<div class="clearfix"></div>
