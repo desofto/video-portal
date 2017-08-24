@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserApi } from '../api/index';
 
 @Component({
-  templateUrl: './login.html',
-  styleUrls: [
-    './login.css'
-  ]
+  templateUrl: './login.html'
 })
 
 export class UserLogin implements OnInit {

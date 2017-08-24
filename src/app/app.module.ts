@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app.routing.module';
 
 import { ApiModule }    from './api/module';
 import { AppComponent } from './app.component';
-import { VideoList, VideoShow }    from './video/index';
+import { VideoList, VideoItem, VideoShow, VideoSidebar }    from './video/index';
 import { UserLogin, UserLogout }    from './user/index';
 
 import { AuthGuard } from './guards/index';
@@ -20,10 +20,8 @@ import { PageNotFoundComponent }  from './shared/index';
 @NgModule({
   declarations: [
     AppComponent,
-    VideoList,
-    VideoShow,
-    UserLogin,
-    UserLogout,
+    VideoList, VideoItem, VideoShow, VideoSidebar,
+    UserLogin, UserLogout,
     PageNotFoundComponent
   ],
   imports: [

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { VideoApi } from '../api/index';
 
 @Component({
-  selector: 'video-list',
-  templateUrl: './list.html'
+  selector: 'video-sidebar',
+  templateUrl: './sidebar.html'
 })
 
-export class VideoList implements OnInit {
+export class VideoSidebar implements OnInit {
   constructor(
     private video_api: VideoApi
   ) { }

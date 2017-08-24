@@ -1,5 +1,5 @@
 import { Injectable }     from '@angular/core';
-import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
 import { CurrentUser } from '../services';
 import { Md5 } from 'ts-md5/dist/md5';
