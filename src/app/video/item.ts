@@ -20,9 +20,8 @@ export class VideoItem {
     private video_api: VideoApi
   ) { }
 
-  rating(ratings): Number {
-    let sum = ratings.reduce((previous, current) => current += previous);
-    return sum / ratings.length;
+  avgRating(): Number {
+    return this.video_api.avgRating(this.video);
   }
 
   toggleVideo(event: any) {

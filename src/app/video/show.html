@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-md-9">
+    <div class="panel panel-default">
+      <div class="panel-heading" style="padding-left: 5rem; padding-right: 5rem">
+        <div *ngIf="video">
+          <div class="row text-center">
+            <h4>{{ video.name }}</h4>
+          </div>
+          <div class="row text-center">
+            <video controls (click)="toggleVideo()" #videoPlayer src="http://localhost:3000/{{video.url}}" type="video/mp4">
+              Browser not supported
+            </video>
+          </div>
+          <div class="row">
+            <ngb-rating [rate]="myRate || avgRating(video)" (rateChange)="rate($event)" max="5">
+              <ng-template let-fill="fill">
+                <span class="star" [class.filled]="fill === 100">&#9733;</span>
+              </ng-template>
+            </ngb-rating>
+          </div>
+          <div class="row">
+            <p style="text-align: justify">
+              {{ video.description }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <video-sidebar></video-sidebar>
+  </div>
+</div>

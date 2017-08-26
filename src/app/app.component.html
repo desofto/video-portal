@@ -1,11 +1,14 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <div class="pull-left col-md-10">
-      {{ title }}
+      <h4 routerLink="/" style="cursor: pointer">
+        {{ title }}
+      </h4>
     </div>
     <div class="pull-left col-md-2">
       <div *ngIf="currentUser">
         Logged in as: {{ currentUser?.username }}
+        |
         <a routerLink="/logout">Logout</a>
       </div>
     </div>

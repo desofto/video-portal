@@ -14,7 +14,7 @@ export class VideoApi {
   list(skip?: Number, limit?: Number) {
     return new Promise((resolve, reject) => {
       let sessionId = this.currentUser.active.sessionId;
-      this.http.get(`http://localhost:3000/videos?sessionId=${sessionId}&skip=${skip || ''}&limit=${limit || 8}`)
+      this.http.get(`http://localhost:3000/videos?sessionId=${sessionId}&skip=${skip || ''}&limit=${limit || ''}`)
         .map(res => res.json())
         .subscribe(res => {
           if(res.status == 'success') {
@@ -30,7 +30,7 @@ export class VideoApi {
     return new Promise((resolve, reject) => {
       let sessionId = this.currentUser.active.sessionId;
 
-      this.http.get(`http://localhost:3000/videos?sessionId=${sessionId}&videoId=${id}`)
+      this.http.get(`http://localhost:3000/video?sessionId=${sessionId}&videoId=${id}`)
         .map(res => res.json())
         .subscribe(res => {
           if(res.status == 'success') {
@@ -49,10 +49,10 @@ export class VideoApi {
       const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
       const options = new RequestOptions({ headers: headers });
       const body: URLSearchParams = new URLSearchParams();
-      body.set('videoid', id);
+      body.set('videoId', id);
       body.set('rating', rating.toString());
 
-      this.http.post(`http://localhost:3000/videos?sessionId=${sessionId}`, body.toString(), options)
+      this.http.post(`http://localhost:3000/video/ratings?sessionId=${sessionId}`, body.toString(), options)
         .map(res => res.json())
         .subscribe(res => {
           if(res.status == 'success') {
@@ -62,5 +62,10 @@ export class VideoApi {
           }
         }, () => reject())
     });
+  }
+
+  avgRating(video): Number {
+    let sum = video.ratings.reduce((previous, current) => current += previous);
+    return sum / video.ratings.length;
   }
 }

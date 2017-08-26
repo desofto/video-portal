@@ -10,9 +10,9 @@ import { PageNotFoundComponent }  from './shared/index';
 
 const appRoutes: Routes = [
   { path: '',           component: VideoList, pathMatch: 'full', canActivate: [AuthGuard] },
-  { path: 'video/:id',  component: VideoShow, canActivate: [AuthGuard] },
   { path: 'login',      component: UserLogin },
   { path: 'logout',     component: UserLogout },
+  { path: ':id',        component: VideoShow, canActivate: [AuthGuard] },
   { path: '**',         component: PageNotFoundComponent }
 ];
 
@@ -28,3 +28,9 @@ const appRoutes: Routes = [
 })
 
 export class AppRoutingModule { }
+
+export const routedComponents = [
+  VideoList, VideoShow,
+  UserLogin, UserLogout,
+  PageNotFoundComponent
+];

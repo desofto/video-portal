@@ -1,28 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { Router }           from '@angular/router';
+import { Router } from '@angular/router';
 
-import { AppRoutingModule } from './app.routing.module';
+import { AppRoutingModule, routedComponents } from './app.routing.module';
 
-import { ApiModule }    from './api/module';
+import { ApiModule } from './api/module';
 import { AppComponent } from './app.component';
-import { VideoList, VideoItem, VideoShow, VideoSidebar }    from './video/index';
-import { UserLogin, UserLogout }    from './user/index';
+import { VideoItem, VideoSidebar } from './video/index';
 
 import { AuthGuard } from './guards/index';
 
-import { CurrentUser } from './services/index';
-
-import { PageNotFoundComponent }  from './shared/index';
+import { CurrentUser, VideoStorage } from './services/index';
 
 @NgModule({
   declarations: [
     AppComponent,
-    VideoList, VideoItem, VideoShow, VideoSidebar,
-    UserLogin, UserLogout,
-    PageNotFoundComponent
+    routedComponents,
+    VideoItem, VideoSidebar
   ],
   imports: [
     BrowserModule,
@@ -35,7 +31,7 @@ import { PageNotFoundComponent }  from './shared/index';
   ],
   providers: [
     AuthGuard,
-    CurrentUser
+    CurrentUser, VideoStorage
   ],
   bootstrap: [AppComponent]
 })
