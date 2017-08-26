@@ -2,7 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { UserApi } from '../api/index';
 
 @Component({
-  templateUrl: './login.html'
+  templateUrl: './login.html',
+  styles: [`
+    .form {
+      margin: auto;
+      width: 20em;
+    }
+  `]
 })
 
 export class UserLogin implements OnInit {
