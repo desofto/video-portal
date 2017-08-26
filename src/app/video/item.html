@@ -1,19 +1,19 @@
-<div class="panel panel-default" routerLink="/{{ video._id }}" style="cursor: pointer;">
-  <div class="panel-heading" style="width: 30rem; height: 30rem; overflow: hidden;">
-    <div class="row">
+<div class="panel panel-default" routerLink="/{{ video._id }}" style="cursor: pointer">
+  <div class="panel-heading" style="width: 30rem; height: 30rem; overflow: hidden">
+    <div class="row" style="margin-left: -10px; margin-right: -10px">
       {{ video.name }}
     </div>
     <div class="row">
       <img src="/assets/thumbnail.png">
     </div>
-    <div class="row">
+    <div class="row" style="margin-left: -10px; margin-right: -10px">
       <ngb-rating [rate]="avgRating(video)" readonly="true" max="5">
         <ng-template let-fill="fill">
           <span class="star" [class.filled]="fill === 100">&#9733;</span>
         </ng-template>
       </ngb-rating>
     </div>
-    <div class="row">
+    <div class="row" style="margin-left: -10px; margin-right: -10px">
       <small class="description">
         {{ video.description }}
       </small>
