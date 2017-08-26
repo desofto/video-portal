@@ -5,12 +5,17 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 
+// Api for access video
+// We are using promises instead of observable here because there are one time events
+
 export class VideoApi {
   constructor (
     private http: Http,
+    // for sessionId
     private currentUser: CurrentUser
   ) {}
 
+  // Load next part of video
   list(skip?: Number, limit?: Number) {
     return new Promise((resolve, reject) => {
       let sessionId = this.currentUser.active.sessionId;
@@ -26,6 +31,7 @@ export class VideoApi {
     });
   }
 
+  // Get information about a video
   one(id: string) {
     return new Promise((resolve, reject) => {
       let sessionId = this.currentUser.active.sessionId;
@@ -42,6 +48,7 @@ export class VideoApi {
     });
   }
 
+  // Rate a video
   rate(id: string, rating: Number) {
     return new Promise((resolve, reject) => {
       let sessionId = this.currentUser.active.sessionId;
@@ -64,6 +71,7 @@ export class VideoApi {
     });
   }
 
+  // Helper function to calculate average rating of video
   avgRating(video): Number {
     let sum = video.ratings.reduce((previous, current) => current += previous);
     return sum / video.ratings.length;

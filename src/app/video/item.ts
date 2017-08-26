@@ -1,6 +1,8 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { VideoApi } from '../api/index';
 
+// A single video item (preview). Used both for main list and sidebar
+
 @Component({
   selector: 'video-item',
   templateUrl: './item.html',
@@ -13,18 +15,15 @@ import { VideoApi } from '../api/index';
 })
 
 export class VideoItem {
+  // Video object to show
   @Input('video') video: Object;
-  @ViewChild('videoPlayer') videoplayer: any;
 
   constructor(
     private video_api: VideoApi
   ) { }
 
   avgRating(): Number {
+    // returns average rating of video
     return this.video_api.avgRating(this.video);
-  }
-
-  toggleVideo(event: any) {
-    this.videoplayer.play();
   }
 }
