@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { VideoStorage } from '../services/index';
+import { VideoStorage } from '../services';
 
 // Main video list
 

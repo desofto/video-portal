@@ -1,6 +1,6 @@
 import { Component, ViewChild, OnInit, AfterViewChecked } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { VideoApi } from '../api/index';
+import { VideoApi } from '../api';
 
 // Shows video
 

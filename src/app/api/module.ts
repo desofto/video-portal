@@ -1,7 +1,7 @@
 import { NgModule }     from '@angular/core';
 import { HttpModule }   from '@angular/http';
 
-import { UserApi, VideoApi }   from './index';
+import { UserApi, VideoApi }   from './';
 
 @NgModule({
   imports: [

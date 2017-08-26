@@ -3,7 +3,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import { Router } from '@angular/router';
-import { CurrentUser } from './services/index';
+import { CurrentUser } from './services';
 
 @Component({
   selector: 'app-root',

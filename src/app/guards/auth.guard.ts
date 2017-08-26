@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { CurrentUser } from '../services/index';
+import { CurrentUser } from '../services';
 
 @Injectable()
 

@@ -1,12 +1,12 @@
 import { NgModule }               from '@angular/core';
 import { RouterModule, Routes }   from '@angular/router';
 
-import { VideoList, VideoShow }   from './video/index';
-import { UserLogin, UserLogout }  from './user/index';
+import { VideoList, VideoShow }   from './video';
+import { UserLogin, UserLogout }  from './user';
 
-import { AuthGuard }              from './guards/index';
+import { AuthGuard }              from './guards';
 
-import { PageNotFoundComponent }  from './shared/index';
+import { PageNotFoundComponent }  from './shared';
 
 const appRoutes: Routes = [
   // root path

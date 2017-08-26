@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { VideoApi } from '../api/index';
+import { VideoApi } from '../api';
 
 // A single video item (preview). Used both for main list and sidebar
 

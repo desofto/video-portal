@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
-import { VideoApi } from '../api/index';
+import { VideoApi } from '../api';
 
 @Injectable()
 

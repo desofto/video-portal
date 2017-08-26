@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserApi } from '../api/index';
+import { UserApi } from '../api';
 
 // Component used for logout user. Without template with redirection at the end
 

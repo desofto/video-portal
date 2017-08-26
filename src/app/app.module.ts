@@ -8,11 +8,11 @@ import { AppRoutingModule, routedComponents } from './app.routing.module';
 
 import { ApiModule } from './api/module';
 import { AppComponent } from './app.component';
-import { VideoItem, VideoSidebar } from './video/index';
+import { VideoItem, VideoSidebar } from './video';
 
-import { AuthGuard } from './guards/index';
+import { AuthGuard } from './guards';
 
-import { CurrentUser, VideoStorage } from './services/index';
+import { CurrentUser, VideoStorage } from './services';
 
 @NgModule({
   declarations: [
