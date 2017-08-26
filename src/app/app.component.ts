@@ -26,6 +26,10 @@ export class AppComponent implements OnDestroy {
     });
   }
 
+  unblur() {
+    (document.activeElement as HTMLElement).blur();
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
