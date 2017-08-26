@@ -5,23 +5,18 @@ import { DebugElement }    from '@angular/core';
 import { NgbModule, NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { RouterLinkStubDirective, RouterOutletStubComponent } from '../testing';
+import { fakeVideoApi } from '../testing';
 
 import { VideoItem } from './';
 import { VideoApi } from '../api';
 
-let comp:    VideoItem;
+let comp: VideoItem;
 let fixture: ComponentFixture<VideoItem>;
 
 describe('VideoItem', () => {
-  let el:      DebugElement;
+  let el: DebugElement;
 
   beforeEach(async(() => {
-    var fakeVideoApi = {
-      avgRating(ratings: Array<number>) {
-        return 5;
-      }
-    }
-
     TestBed.configureTestingModule({
       declarations: [
         VideoItem,
@@ -43,8 +38,6 @@ describe('VideoItem', () => {
   }));
 
   beforeEach(() => {
-    el = fixture.debugElement.query(By.css('.panel'));
-
     comp.video = {
       _id: '123',
       name: 'joke [1]',
@@ -52,11 +45,12 @@ describe('VideoItem', () => {
       description: 'test video description'
     }
     fixture.detectChanges();
+    el = fixture.debugElement;
   });
 
   it('should display title and description', () => {
-    expect(el.nativeElement.textContent).toContain('joke [1]');
+    expect(el.query(By.css('.panel')).nativeElement.textContent).toContain('joke [1]');
 
-    expect(el.nativeElement.textContent).toContain('test video description');
+    expect(el.query(By.css('.panel')).nativeElement.textContent).toContain('test video description');
   });
 });
