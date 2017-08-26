@@ -1,5 +1,5 @@
 import { Component, ViewChild, OnInit, AfterViewChecked } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { VideoApi } from '../api/index';
 
 @Component({
@@ -23,6 +23,7 @@ export class VideoShow implements OnInit, AfterViewChecked {
   @ViewChild('videoPlayer') videoplayer: any;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private video_api: VideoApi
   ) { }
@@ -33,6 +34,9 @@ export class VideoShow implements OnInit, AfterViewChecked {
         this.autoPlay = true;
         this.video = video;
         window.scrollTo(0, 0);
+      }, () => {
+        // navigate to video list if video was not found
+        this.router.navigate(['/']);
       });
     });
   }
