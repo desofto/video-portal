@@ -1,15 +1,18 @@
 import { TestBed, async, ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
 import { By }              from '@angular/platform-browser';
 import { DebugElement }    from '@angular/core';
+import { Router } from '@angular/router';
+
+import { FormsModule } from '@angular/forms';
 
 import { NgbModule, NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { RouterLinkStubDirective, RouterOutletStubComponent, NgbRatingStubDirective } from './';
-import { fakeVideoApi } from './';
+import { fakeVideoApi, fakeUserApi, fakeRouter } from './';
 
 import { VideoList, VideoItem } from '../video';
 import { VideoStorage } from '../services';
-import { VideoApi } from '../api';
+import { VideoApi, UserApi } from '../api';
 
 import { AppComponent } from '../app.component';
 import { CurrentUser } from '../services';
@@ -28,12 +31,15 @@ export function prepareFixture(componentClass) {
       ],
       imports: [
         // NgbModule -- NgbRatingStubDirective in use
+        FormsModule
       ],
       providers: [
         //NgbRatingConfig, -- NgbRatingStubDirective in use
-        VideoStorage,
-        { provide: CurrentUser, useValue: currentUser },
+        { provide: Router, useValue: fakeRouter },
+        { provide: UserApi, useValue: fakeUserApi },
         { provide: VideoApi, useValue: fakeVideoApi },
+        { provide: CurrentUser, useValue: currentUser },
+        VideoStorage,
       ]
     })
     .compileComponents()
