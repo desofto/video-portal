@@ -1,32 +1,81 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
+import { By }              from '@angular/platform-browser';
+import { DebugElement }    from '@angular/core';
+
+import { RouterLinkStubDirective, RouterOutletStubComponent } from './testing';
+import { fakeVideoApi, emptyCurrentUser } from './testing';
 
 import { AppComponent } from './app.component';
+import { CurrentUser } from './services';
 
-describe('AppComponent', () => {
+describe('AppComponent not logged in', () => {
+  let comp: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let el: DebugElement;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        RouterLinkStubDirective, RouterOutletStubComponent
       ],
-    }).compileComponents();
+      imports: [
+      ],
+      providers: [
+        { provide: CurrentUser, useValue: emptyCurrentUser },
+      ]
+    })
+    .compileComponents()
+    .then(() => {
+      fixture = TestBed.createComponent(AppComponent);
+      comp    = fixture.componentInstance;
+    });
   }));
 
-  it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
-
-  it(`should have as title 'app'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app');
-  }));
-
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
+  beforeEach(() => {
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to app!');
+    el = fixture.debugElement;
+  });
+
+  it('when not logged in', () => {
+    expect(el.query(By.css('.panel')).nativeElement.textContent).not.toContain('Logged in as:');
+  });
+});
+
+describe('AppComponent logged in', () => {
+  let comp: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let el: DebugElement;
+
+  beforeEach(async(() => {
+    let currentUser = new CurrentUser();
+    currentUser.set({ username: 'test user' });
+
+    TestBed.configureTestingModule({
+      declarations: [
+        AppComponent,
+        RouterLinkStubDirective, RouterOutletStubComponent
+      ],
+      imports: [
+      ],
+      providers: [
+        { provide: CurrentUser, useValue: currentUser },
+      ]
+    })
+    .compileComponents()
+    .then(() => {
+      fixture = TestBed.createComponent(AppComponent);
+      comp    = fixture.componentInstance;
+    });
+  }));
+
+  beforeEach(() => {
+    fixture.detectChanges();
+    el = fixture.debugElement;
+  });
+
+  it('shows username', fakeAsync(() => {
+    expect(el.query(By.css('.panel')).nativeElement.textContent).toContain('Logged in as: test user');
+    expect(el.query(By.css('.panel')).nativeElement.textContent).toContain('Logout', 'Has link to logout');
   }));
 });
