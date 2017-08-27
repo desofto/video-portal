@@ -1,56 +1,32 @@
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { ComponentFixture, async, fakeAsync, tick } from '@angular/core/testing';
 import { By }              from '@angular/platform-browser';
 import { DebugElement }    from '@angular/core';
 
-import { NgbModule, NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
-
-import { RouterLinkStubDirective, RouterOutletStubComponent } from '../testing';
-import { fakeVideoApi } from '../testing';
-
+import { prepareFixture } from '../testing';
 import { VideoItem } from './';
-import { VideoApi } from '../api';
-
-let comp: VideoItem;
-let fixture: ComponentFixture<VideoItem>;
 
 describe('VideoItem', () => {
+  let fixture: ComponentFixture<VideoItem>;
   let el: DebugElement;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        VideoItem,
-        RouterLinkStubDirective, RouterOutletStubComponent
-      ],
-      imports: [
-        NgbModule
-      ],
-      providers: [
-        NgbRatingConfig,
-        { provide: VideoApi, useValue: fakeVideoApi }
-      ]
-    })
-    .compileComponents()
-    .then(() => {
-      fixture = TestBed.createComponent(VideoItem);
-      comp    = fixture.componentInstance;
+    prepareFixture(VideoItem).then((fix: any) => {
+      fixture = fix;
+
+      fixture.componentInstance.video = {
+        _id: '123',
+        name: 'joke [1]',
+        ratings: [1,2,3],
+        description: 'test video description'
+      }
+
+      fixture.detectChanges();
+      el = fixture.debugElement;
     });
   }));
 
-  beforeEach(() => {
-    comp.video = {
-      _id: '123',
-      name: 'joke [1]',
-      ratings: [1,2,3],
-      description: 'test video description'
-    }
-    fixture.detectChanges();
-    el = fixture.debugElement;
-  });
-
   it('should display title and description', () => {
     expect(el.query(By.css('.panel')).nativeElement.textContent).toContain('joke [1]');
-
     expect(el.query(By.css('.panel')).nativeElement.textContent).toContain('test video description');
   });
 });

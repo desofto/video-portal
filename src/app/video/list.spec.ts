@@ -1,45 +1,22 @@
-import { TestBed, async, ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, async, fakeAsync, tick } from '@angular/core/testing';
 import { By }              from '@angular/platform-browser';
 import { DebugElement }    from '@angular/core';
 
-import { RouterLinkStubDirective, RouterOutletStubComponent, NgbRatingStubDirective } from '../testing';
-import { fakeVideoApi } from '../testing';
-
-import { VideoList, VideoItem } from './';
+import { prepareFixture } from '../testing';
+import { VideoList } from './';
 import { VideoStorage } from '../services';
-import { VideoApi } from '../api';
-
-let comp: VideoList;
-let fixture: ComponentFixture<VideoList>;
 
 describe('VideoList', () => {
+  let fixture: ComponentFixture<VideoList>;
   let el: DebugElement;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        VideoList, VideoItem,
-        RouterLinkStubDirective, RouterOutletStubComponent,
-        NgbRatingStubDirective
-      ],
-      imports: [
-      ],
-      providers: [
-        { provide: VideoApi, useValue: fakeVideoApi },
-        VideoStorage
-      ]
-    })
-    .compileComponents()
-    .then(() => {
-      fixture = TestBed.createComponent(VideoList);
-      comp    = fixture.componentInstance;
+    prepareFixture(VideoList).then((fix: any) => {
+      fixture = fix;
+      fixture.detectChanges();
+      el = fixture.debugElement;
     });
   }));
-
-  beforeEach(() => {
-    fixture.detectChanges();
-    el = fixture.debugElement;
-  });
 
   it('should show 3 video', () => {
     expect(el.queryAll(By.css('video-item')).length).toBe(3, 'should show 3 videos');
