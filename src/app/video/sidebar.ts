@@ -33,10 +33,7 @@ export class VideoSidebar implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  // this allows to load next part of videos when scrolled down: lazy load
-  @HostListener('window:scroll', ['$event']) onScrollEvent($event) {
-    if(window.scrollY + window.innerHeight >= document.body.scrollHeight) {
-      this.storage.load();
-    }
+  loadNext() {
+    this.storage.load();
   }
 }

@@ -1,3 +1,5 @@
 <div *ngFor="let video of list">
   <video-item [video]="video" class="pull-left"></video-item>
 </div>
+<div class="clearfix"></div>
+<lazy-load (load)="loadNext()"></lazy-load>

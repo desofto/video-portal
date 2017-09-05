@@ -14,11 +14,14 @@ import { AuthGuard } from './guards';
 
 import { CurrentUser, VideoStorage } from './services';
 
+import { LazyLoadComponent } from './shared';
+
 @NgModule({
   declarations: [
     AppComponent,
     routedComponents,
-    VideoItem, VideoSidebar
+    VideoItem, VideoSidebar,
+    LazyLoadComponent
   ],
   imports: [
     BrowserModule,
